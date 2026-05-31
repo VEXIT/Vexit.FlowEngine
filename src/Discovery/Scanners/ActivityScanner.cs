@@ -94,10 +94,7 @@ public sealed class ActivityScanner
     {
         return async input =>
         {
-            // DEBUG: Check service resolution
-            // Console.WriteLine($"[DEBUG ActivityScanner] Attempting to resolve: {declaringType.FullName}");
             var resolved = method.IsStatic ? null : serviceProvider.GetService(declaringType);
-            // Console.WriteLine($"[DEBUG ActivityScanner] Resolution result: {resolved != null}");
 
             // Lazy service resolution: resolve at execution time, not registration time
             var instance = method.IsStatic
@@ -129,10 +126,7 @@ public sealed class ActivityScanner
     {
         return async input =>
         {
-            // DEBUG: Check service resolution
-            // Console.WriteLine($"[DEBUG ActivityScanner] Attempting to resolve: {declaringType.FullName}");
             var resolved = method.IsStatic ? null : serviceProvider.GetService(declaringType);
-            // Console.WriteLine($"[DEBUG ActivityScanner] Resolution result: {resolved != null}");
 
             var instance = method.IsStatic
                 ? null

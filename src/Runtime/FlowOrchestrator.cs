@@ -377,18 +377,6 @@ public sealed class FlowOrchestrator : IFlowRunner, IFlowController
         }
 
         var assembly = _options.DiscoveryAssembly ?? fallbackAssembly;
-
-        // DEBUG: Check if ServerSetupService is in the injected provider
-        var testType = Type.GetType("Vexit.VxServerCli.Commands.Server.Setup.Services.ServerSetupService, Vexit.VxServerCli");
-        if (testType != null)
-        {
-            var testResolve = _serviceProvider.GetService(testType);
-            // Console.WriteLine($"[DEBUG FlowOrchestrator] ServerSetupService resolved from _serviceProvider: {testResolve != null}");
-        }
-        else
-        {
-            // Console.WriteLine($"[DEBUG FlowOrchestrator] Could not resolve ServerSetupService type");
-        }
         
         _activityScanner.Scan(assembly, _serviceProvider, _activityRegistry);
         _flowScanner.Scan(assembly, _flowRegistry);
